@@ -15,7 +15,6 @@ export default async function Home() {
         {movies.map((movie) => (
           <li key={movie._id} className="bg-white p-4 rounded-md text-gray-800 shadow-md">
             <NextImage
-            
               src={movie.poster}
               alt={movie.title}
               width={300}
@@ -23,10 +22,11 @@ export default async function Home() {
               className="mb-4 rounded-md"
             />
             <h3 className="text-lg font-medium mb-2">{movie.title}</h3>
-            <p className="text-gray-500">{movie.plot}</p>
+            <p className="text-gray-500">{movie.plot || "-"}</p>
             <div className="mt-4 flex justify-between">
               <p className="text-sm text-gray-500">
-                <span className="font-bold">Duration:</span> {movie.duration} min
+                <span className="font-bold">Duration:</span>{" "}
+                {movie.duration ? `${movie.duration} min` : "-"}
               </p>
               <p className="text-sm text-gray-500">
                 {movie.released ? new Date(movie.released).getFullYear() : "-"}
@@ -34,18 +34,25 @@ export default async function Home() {
             </div>
             <div className="mt-4 flex justify-between">
               <p className="text-sm text-gray-500">
-                <span className="font-bold">Genre:</span> {movie.genre ? movie.genre.join(", ") : "-"}
+                <span className="font-bold">Genre:</span>{" "}
+                {movie.genre ? movie.genre.join(", ") : "-"}
               </p>
               <p className="text-sm text-gray-500">
-                <span className="font-bold">Dir:</span> {movie.directors ? movie.directors.join(", ") : "-"}
+                <span className="font-bold">Dir:</span>{" "}
+                {movie.directors ? movie.directors.join(", ") : "-"}
               </p>
             </div>
             <div className="mt-4 flex justify-between">
               <p className="text-sm text-gray-500">
-                <span className="font-bold">Cast:</span> {movie.cast ? movie.cast.join(", ") : "-"}
+                <span className="font-bold">Cast:</span>{" "}
+                {movie.cast ? movie.cast.join(", ") : "-"}
               </p>
               <p className="text-sm text-gray-500">
-                {movie.rating ? <span className="font-bold">{movie.rating}/10</span> : "-"}
+                {movie.rating ? (
+                  <span className="font-bold">{movie.rating}/10</span>
+                ) : (
+                  "-"
+                )}
               </p>
             </div>
           </li>
