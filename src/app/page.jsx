@@ -9,6 +9,13 @@ async function fetchMovies() {
 
 export default async function Home() {
   const { movies } = await getMovies();
+  if (!movies || movies.length === 0) {
+    return (
+      <div className="flex min-h-screen items-center justify-center p-4 md:p-8 lg:p-16 bg-gray-100">
+        <p className="text-gray-800">No movies found.</p>
+      </div>
+    );
+  }
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-4 md:p-8 lg:p-16 bg-gray-100">
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
