@@ -1,5 +1,6 @@
 import { getMovies } from "../../lib/mongo/movies";
 import NextImage from "next/image";
+import { Analytics } from '@vercel/analytics/react';
 
 async function fetchMovies() {
   const movies = await getMovies();
@@ -65,6 +66,7 @@ export default async function Home() {
           </li>
         ))}
       </ul>
+      <Analytics />
     </div>
   );
 }
